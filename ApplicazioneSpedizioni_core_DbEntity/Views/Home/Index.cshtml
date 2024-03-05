@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+	<h1>🚊 Benvenuto in Spedizioni Belle 🚊</h1>
+
+    @{
+        if (User.IsInRole("privato"))
+        {
+            
+                <a class="btn btn-primary" asp-controller="Utente" asp-action="index"> lista Utenti Attivi</a>
+                <a class="btn btn-primary" asp-controller="Spedizioni" asp-action="index"> Elenco Spedizioni </a>
+          
+        }
+        else
+        {
+
+        }
+    }
+</div>
+

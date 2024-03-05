@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicazioneSpedizioni_core_DbEntity", "ApplicazioneSpedizioni_core_DbEntity\ApplicazioneSpedizioni_core_DbEntity.csproj", "{CEA6E353-DEEE-4BE1-80C0-77BB1CA74104}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEA6E353-DEEE-4BE1-80C0-77BB1CA74104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA6E353-DEEE-4BE1-80C0-77BB1CA74104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA6E353-DEEE-4BE1-80C0-77BB1CA74104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA6E353-DEEE-4BE1-80C0-77BB1CA74104}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {082AC0D1-D240-4594-8438-653F794EBE2D}
+	EndGlobalSection
+EndGlobal

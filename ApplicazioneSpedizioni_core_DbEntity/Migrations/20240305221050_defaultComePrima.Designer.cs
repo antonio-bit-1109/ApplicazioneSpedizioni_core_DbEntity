@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicazioneSpedizioni_core_DbEntity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240305181929_deletetabella")]
-    partial class deletetabella
+    [Migration("20240305221050_defaultComePrima")]
+    partial class defaultComePrima
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

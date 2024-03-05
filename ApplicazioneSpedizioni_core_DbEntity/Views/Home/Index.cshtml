@@ -7,7 +7,7 @@
 	<h1>🚊 Benvenuto in Spedizioni Belle 🚊</h1>
 
     @{
-        if (User.IsInRole("privato"))
+        if (User.Identity.IsAuthenticated)
         {
             
                 <a class="btn btn-primary" asp-controller="Utente" asp-action="index"> lista Utenti Attivi</a>

@@ -1,0 +1,75 @@
+﻿@model ApplicazioneSpedizioni_core_DbEntity.Models.Spedizioni
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Spedizioni</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumeroIdentificativo" class="control-label"></label>
+                <input asp-for="NumeroIdentificativo" class="form-control" />
+                <span asp-validation-for="NumeroIdentificativo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataSpedizione" class="control-label"></label>
+                <input asp-for="DataSpedizione" type="datetime-local" class="form-control" />
+                <span asp-validation-for="DataSpedizione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Peso" class="control-label"></label>
+                <input asp-for="Peso" class="form-control" />
+                <span asp-validation-for="Peso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cittaDiDestinazione" class="control-label"></label>
+                <input asp-for="cittaDiDestinazione" class="form-control" />
+                <span asp-validation-for="cittaDiDestinazione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IndirizzoDestinatario" class="control-label"></label>
+                <input asp-for="IndirizzoDestinatario" class="form-control" />
+                <span asp-validation-for="IndirizzoDestinatario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeDestinatario" class="control-label"></label>
+                <input asp-for="NomeDestinatario" class="form-control" />
+                <span asp-validation-for="NomeDestinatario" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="CostoSpedizione" class="control-label"></label>
+               <select asp-for="CostoSpedizione">
+                   <option value="3,99">3.99 $</option>
+                    <option value="5,99">5.99 $</option>
+                    <option value="7,99">7.99 $</option>
+                    <option value="9,99">9.99 $</option>
+               </select>
+           @*      <input asp-for="CostoSpedizione" class="form-control" /> *@
+                <span asp-validation-for="CostoSpedizione" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataConsegnaPrevista" class="control-label"></label>
+                <input type="datetime-local" asp-for="DataConsegnaPrevista" class="form-control" />
+                <span asp-validation-for="DataConsegnaPrevista" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+	
+}

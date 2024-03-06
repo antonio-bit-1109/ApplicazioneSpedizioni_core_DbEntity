@@ -37,7 +37,15 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Models
 
         [NotMapped]
         public string CurrentAction { get; set; }
+
+        //chiave esterna//
+        public int? IdUtente { get; set; }
+
+
+        //proprietà di navigazione
+        public Utente Utente { get; set; }
     }
+
 }
 
 

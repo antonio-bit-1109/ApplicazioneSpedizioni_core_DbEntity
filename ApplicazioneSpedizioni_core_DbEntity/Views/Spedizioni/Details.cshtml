@@ -67,4 +67,13 @@
 <div>
 @*     <a asp-action="Edit" asp-route-id="@Model?.IdSpedizione">Edit</a> | *@
     <a asp-action="Index">Back to List</a>
+
+
+    @{
+       if( User.IsInRole("privato"))
+       {
+             <a asp-action="AggiornaSpedizione" class="btn btn-info ms-4 text-light" >Aggiorna Spedizione</a>
+       }
+    }
+   
 </div>

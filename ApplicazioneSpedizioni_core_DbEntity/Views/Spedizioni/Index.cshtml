@@ -21,6 +21,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.IdUtente)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.NumeroIdentificativo)
             </th>
             <th>
@@ -50,6 +53,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUtente)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumeroIdentificativo)
             </td>
@@ -57,7 +63,7 @@
                 @Html.DisplayFor(modelItem => item.DataSpedizione)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Peso)
+                @Html.DisplayFor(modelItem => item.Peso) Kg
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cittaDiDestinazione)
@@ -69,7 +75,7 @@
                 @Html.DisplayFor(modelItem => item.NomeDestinatario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CostoSpedizione)
+                @Html.DisplayFor(modelItem => item.CostoSpedizione) $
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataConsegnaPrevista)
@@ -77,13 +83,20 @@
 
 
                 @{
+
                     if (User.IsInRole("privato"))
                     {
                          <td>
                             <a asp-action="Edit" asp-route-id="@item.IdSpedizione">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.IdSpedizione">Details</a> |
+                            <a asp-action="Details" asp-route-id="@item.IdSpedizione">Dettagli</a> |
                             <a asp-action="Delete" asp-route-id="@item.IdSpedizione">Delete</a>
-                         </td>
+                        </td>
+                    }
+                    else
+                    {   <td>
+							<a asp-action="Details" asp-route-id="@item.IdSpedizione">Details</a> |
+                        </td>
+                            
                     }
             }
            

@@ -18,6 +18,8 @@ namespace ApplicazioneSpedizioni_core_DbEntity.data
         // in questo modo sto settando il campo numeroIdentificativo come unico
         public DbSet<Spedizioni> Spedizioni { get; set; }
 
+        public DbSet<StatoSpedizione> StatoSpedizioni { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Spedizioni>()
@@ -27,6 +29,23 @@ namespace ApplicazioneSpedizioni_core_DbEntity.data
             modelBuilder.Entity<Spedizioni>()
                   .Property(b => b.CostoSpedizione)
                   .HasPrecision(18, 2); // Specifica la precisione e la scala
+
+            // sto definendo delle configurazioni per la tabella spedizioni 
+            // in particolare sto dicendo che la chiave esterna IdUtente, della tabella spedizioni,
+            // è collegata alla chiave primaria IdUtente della tabella utenti
+            modelBuilder.Entity<Spedizioni>()
+                .HasOne(p => p.Utente)
+                .WithMany()
+                .HasForeignKey(p => p.IdUtente);
+
+
+
+            //modelBuilder.Entity<StatoSpedizione>()
+            // .HasOne(s => s.Spedizioni) // StatoSpedizione ha una Spedizione
+            // .WithMany() // Una Spedizione può avere molti StatoSpedizione
+            // .HasForeignKey(s => s.IdSpedizione); // La chiave esterna è IdSpedizione
+
+
         }
 
     }

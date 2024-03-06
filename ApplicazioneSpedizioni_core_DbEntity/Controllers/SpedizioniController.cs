@@ -15,31 +15,59 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
             _db = db;
             _schemeProvider = schemeProvider;
         }
+
         public IActionResult Index()
         {
-            var TutteLeSpedizioni = _db.Spedizioni.ToList();
+            var UserId = User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
 
-            return View(TutteLeSpedizioni);
+            int idUtenteClaim = Convert.ToInt32(UserId);
+
+            var spedizioniUtente = _db.Spedizioni.Where(t => t.IdUtente == idUtenteClaim).ToList();
+
+
+            // var TutteLeSpedizioniDellUtente = _db.Spedizioni.Where().ToList();
+
+            return View(spedizioniUtente);
         }
 
         public IActionResult Create()
         {
+            //var IdUtenti = _db.Utenti.Where(t => t.Attivo == true).Select(table => table.IdUtente).ToList();
+            var IdUtenti = _db.Utenti.Where(table => table.Attivo == true).Select(table => table.IdUtente).ToList();
+
+
+            //var IdUtenti = _db.Utenti.FromSqlRaw("SELECT IdUtente FROM Utenti WHERE Attivo= 1").ToList();
+            //var IdUtenti = _db.Utenti.Where(table => table.Attivo == true).Select(table => table.IdUtente).ToList();
+
+            if (IdUtenti.Count == 0)
+            {
+                TempData["Errore"] = "Non ci sono utenti nel database. Inserire almeno un utente prima di creare una spedizione.";
+                return RedirectToAction("Index");
+            }
+
+
+            ViewBag.ListaIDUtenti = IdUtenti;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Spedizioni spedizione)
+        public IActionResult Create([Bind(include: "Peso,IdUtente,CurrentAction,DataSpedizione,CostoSpedizione" +
+            ",NomeDestinatario,cittaDiDestinazione,DataConsegnaPrevista,NumeroIdentificativo,IndirizzoDestinatario")] Spedizioni spedizione)
         {
-            if (ModelState.IsValid)
+            try
             {
-
                 _db.Spedizioni.Add(spedizione);
                 _db.SaveChanges();
                 TempData["Message"] = "Spedizione Inserita con successo.";
                 return RedirectToAction("Index");
             }
-            TempData["Errore"] = "Errore nella creazione della spedizione.";
-            return RedirectToAction("Index");
+            catch
+            {
+                TempData["Errore"] = "Errore nella creazione della spedizione.";
+                return RedirectToAction("Index");
+
+            }
+
         }
 
         public IActionResult Edit(int id)
@@ -102,6 +130,12 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 
             TempData["Errore"] = "Errore nell'eliminazione della spedizione.";
             return RedirectToAction("Index");
+        }
+
+
+        public IActionResult AggiornaSpedizione(int id)
+        {
+
         }
 
         public JsonResult NumIdentificativoUsed(int NumeroIdentificativo, string CurrentAction)

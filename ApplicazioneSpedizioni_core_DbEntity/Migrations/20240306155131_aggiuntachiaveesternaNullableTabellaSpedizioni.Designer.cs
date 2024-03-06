@@ -4,6 +4,7 @@ using ApplicazioneSpedizioni_core_DbEntity.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicazioneSpedizioni_core_DbEntity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240306155131_aggiuntachiaveesternaNullableTabellaSpedizioni")]
+    partial class aggiuntachiaveesternaNullableTabellaSpedizioni
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,38 +74,6 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Migrations
                     b.ToTable("Spedizioni");
                 });
 
-            modelBuilder.Entity("ApplicazioneSpedizioni_core_DbEntity.Models.StatoSpedizione", b =>
-                {
-                    b.Property<int>("IdStatoSpedizione")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdStatoSpedizione"));
-
-                    b.Property<DateOnly>("DataAggiornamento")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Descrizione")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdSpedizione")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LuogoGiacenzaPacco")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StatusSpedizione")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdStatoSpedizione");
-
-                    b.HasIndex("IdSpedizione");
-
-                    b.ToTable("StatoSpedizioni");
-                });
-
             modelBuilder.Entity("ApplicazioneSpedizioni_core_DbEntity.Models.Utente", b =>
                 {
                     b.Property<int>("IdUtente")
@@ -142,17 +113,6 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Migrations
                         .HasForeignKey("IdUtente");
 
                     b.Navigation("Utente");
-                });
-
-            modelBuilder.Entity("ApplicazioneSpedizioni_core_DbEntity.Models.StatoSpedizione", b =>
-                {
-                    b.HasOne("ApplicazioneSpedizioni_core_DbEntity.Models.Spedizioni", "Spedizioni")
-                        .WithMany()
-                        .HasForeignKey("IdSpedizione")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Spedizioni");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicazioneSpedizioni_core_DbEntity.Models
 {
@@ -9,7 +10,7 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Models
         public int IdSpedizione { get; set; }
 
         [Required]
-        [Remote("NumIdentificativoUsed", "Spedizioni", ErrorMessage = "Questo Numero Identificativo  è già in uso.")]
+        [Remote("NumIdentificativoUsed", "Spedizioni", AdditionalFields = "CurrentAction ", ErrorMessage = "Questo Numero Identificativo  è già in uso.")]
         // è impostato come unico In ApplicationDbContext
         public int NumeroIdentificativo { get; set; }
 
@@ -29,10 +30,13 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Models
         public string NomeDestinatario { get; set; }
 
         [Required]
-        public decimal CostoSpedizione { get; set; }
+        public int CostoSpedizione { get; set; }
 
         [Required]
         public DateOnly DataConsegnaPrevista { get; set; }
+
+        [NotMapped]
+        public string CurrentAction { get; set; }
     }
 }
 

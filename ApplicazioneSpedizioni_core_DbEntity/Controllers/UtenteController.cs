@@ -120,7 +120,6 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 
         public JsonResult NameAlreadyInUse(string nome)
         {
-
             var utente = _db.Utenti.FirstOrDefault(u => u.Nome == nome);
 
             if (utente != null)

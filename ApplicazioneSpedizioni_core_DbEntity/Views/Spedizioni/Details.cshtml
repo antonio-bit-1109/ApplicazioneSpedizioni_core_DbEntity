@@ -1,0 +1,70 @@
+﻿@model ApplicazioneSpedizioni_core_DbEntity.Models.Spedizioni
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="d-flex gap-4 align-items-center">
+	<h1>Details</h1>
+    <img src="~/imgs/scatola.png"/>
+</div>
+
+
+<div>
+    <h4>Spedizioni</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroIdentificativo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroIdentificativo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataSpedizione)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataSpedizione)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Peso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Peso)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cittaDiDestinazione)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cittaDiDestinazione)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IndirizzoDestinatario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IndirizzoDestinatario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeDestinatario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomeDestinatario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CostoSpedizione)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CostoSpedizione)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataConsegnaPrevista)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataConsegnaPrevista)
+        </dd>
+    </dl>
+</div>
+<div>
+@*     <a asp-action="Edit" asp-route-id="@Model?.IdSpedizione">Edit</a> | *@
+    <a asp-action="Index">Back to List</a>
+</div>

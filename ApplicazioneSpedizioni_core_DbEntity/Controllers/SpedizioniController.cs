@@ -32,6 +32,7 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _db.Spedizioni.Add(spedizione);
                 _db.SaveChanges();
                 TempData["Message"] = "Spedizione Inserita con successo.";
@@ -41,13 +42,68 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
             return RedirectToAction("Index");
         }
 
-        //public JsonResult NumIdentificativoUsed(int numIdentificativo)
-        //{
-        //    var controlloIdentificativo = _db.Spedizioni.FirstOrDefault(spedizioni => spedizioni.NumeroIdentificativo == numIdentificativo);
+        public IActionResult Edit(int id)
+        {
+            var spedizioneDaMOdificare = _db.Spedizioni.Find(id);
 
-        //    // se il risulato è true significa che il numero identificativo è gia stato usato
+            if (spedizioneDaMOdificare != null)
+            {
+                spedizioneDaMOdificare.CurrentAction = "Edit";
+            }
+
+            return View(spedizioneDaMOdificare);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Spedizioni spedizione)
+        {
+
+            try
+            {
+                _db.Spedizioni.Update(spedizione);
+                _db.SaveChanges();
+                TempData["Message"] = "Spedizione modificata con successo.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Errore"] = $"Errore nella modifica della spedizione: problema {ex}";
+                return RedirectToAction("Index");
+            }
+        }
 
 
-        //}
+        public IActionResult Details(int id)
+        {
+            var spedizione = _db.Spedizioni.Find(id);
+            return View(spedizione);
+        }
+
+        public JsonResult NumIdentificativoUsed(int NumeroIdentificativo, string CurrentAction)
+        {
+            if (CurrentAction != null)
+            {
+                if (CurrentAction == "Edit")
+                {
+                    // Non eseguire la validazione per questa azione
+                    return Json(true);
+                }
+            }
+
+            var numIdentificativoUsed = _db.Spedizioni.FirstOrDefault(table => table.NumeroIdentificativo == NumeroIdentificativo);
+
+            if (numIdentificativoUsed != null)
+            {
+                // Restituisci false se il NumeroIdentificativo è già in uso
+                return Json(false);
+            }
+            else
+            {
+                return Json(true);
+            }
+            // Restituisci true se il NumeroIdentificativo non è in uso
+        }
+
+
     }
 }

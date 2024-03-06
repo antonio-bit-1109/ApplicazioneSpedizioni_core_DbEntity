@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ApplicazioneSpedizioni_core_DbEntity.styles.css" asp-append-version="true" />
+    @* libreria per far funzionare il toastr    *@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
 
 </head>
 <body>
@@ -75,5 +77,9 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+@* inserisco direttamente in Layout il partial per la validazione dei remote     *@
+    @{     
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 </body>
 </html>

@@ -21,7 +21,6 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
             var UserId = User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
 
             int idUtenteClaim = Convert.ToInt32(UserId);
-
             var spedizioniUtente = _db.Spedizioni.Where(t => t.IdUtente == idUtenteClaim).ToList();
 
 
@@ -135,7 +134,36 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 
         public IActionResult AggiornaSpedizione(int id)
         {
+            TempData["IdSpedizione"] = id;
 
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AggiornaSpedizione([Bind(include: "StatusSpedizione , LuogoGiacenzaPacco , Descrizione , DataAggiornamento , IdSpedizione")] StatoSpedizione AggiornamentoSpedizione)
+        {
+            if (AggiornamentoSpedizione != null)
+            {
+
+                try
+                {
+                    _db.StatoSpedizioni.Add(AggiornamentoSpedizione);
+                    _db.SaveChanges();
+                    TempData["Message"] = "Spedizione Aggiornata con Successo.";
+                    return RedirectToAction("Index");
+                }
+
+                catch
+                {
+                    TempData["Errore"] = "Errore nell'aggiornamento dello stato della spedizione. Modello non valido.";
+                    return RedirectToAction("Index");
+                }
+
+
+            }
+
+            TempData["Errore"] = "Errore nell'aggiornamento dello stato della spedizione. Oggetto null.";
+            return RedirectToAction("Details");
         }
 
         public JsonResult NumIdentificativoUsed(int NumeroIdentificativo, string CurrentAction)

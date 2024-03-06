@@ -64,7 +64,7 @@
         </dd>
     </dl>
 </div>
-<div>
+<div class="d-flex flex-column gap-2">
 @*     <a asp-action="Edit" asp-route-id="@Model?.IdSpedizione">Edit</a> | *@
     <a asp-action="Index">Back to List</a>
 
@@ -72,7 +72,8 @@
     @{
        if( User.IsInRole("privato"))
        {
-             <a asp-action="AggiornaSpedizione" class="btn btn-info ms-4 text-light" >Aggiorna Spedizione</a>
+             <a asp-action="AggiornaSpedizione" asp-route-id="@Model.IdSpedizione" class="btn btn-info text-light me-auto" >Aggiorna Spedizione</a>
+             <a asp-action="VisualizzaAggiornamenti">Visualizza Aggiornamenti</a>
        }
     }
    

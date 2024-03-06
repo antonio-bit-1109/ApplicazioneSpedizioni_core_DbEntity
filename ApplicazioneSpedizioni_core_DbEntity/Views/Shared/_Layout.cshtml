@@ -38,6 +38,20 @@
                               </li> 
                             }
                         }
+
+                        @{
+                            if (User.IsInRole("privato"))
+                            {
+                                <li class="nav-item ms-5 text-danger d-flex align-items-center">
+									<a> ADMIN </a>
+                                </li>
+                            } else if (User.IsInRole("azienda"))
+                            {
+                                <li class="nav-item ms-5 text-danger d-flex align-items-center">
+                                    <a> UTENTE </a>
+                                </li>
+                            }
+                        }
                                           
                     </ul>
                 </div>

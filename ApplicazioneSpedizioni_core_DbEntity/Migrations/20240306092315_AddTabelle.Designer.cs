@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicazioneSpedizioni_core_DbEntity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240305153417_Update2.0Utenti")]
-    partial class Update20Utenti
+    [Migration("20240306092315_AddTabelle")]
+    partial class AddTabelle
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,50 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ApplicazioneSpedizioni_core_DbEntity.Models.Spedizioni", b =>
+                {
+                    b.Property<int>("IdSpedizione")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdSpedizione"));
+
+                    b.Property<decimal>("CostoSpedizione")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly>("DataConsegnaPrevista")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("DataSpedizione")
+                        .HasColumnType("date");
+
+                    b.Property<string>("IndirizzoDestinatario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeDestinatario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumeroIdentificativo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Peso")
+                        .HasColumnType("int");
+
+                    b.Property<string>("cittaDiDestinazione")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdSpedizione");
+
+                    b.HasIndex("NumeroIdentificativo")
+                        .IsUnique();
+
+                    b.ToTable("Spedizioni");
+                });
 
             modelBuilder.Entity("ApplicazioneSpedizioni_core_DbEntity.Models.Utente", b =>
                 {

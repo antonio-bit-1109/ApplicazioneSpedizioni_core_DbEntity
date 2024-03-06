@@ -79,6 +79,31 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
             return View(spedizione);
         }
 
+
+
+        public IActionResult Delete(int id)
+        {
+            var spedizione = _db.Spedizioni.Find(id);
+            return View(spedizione);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Delete(Spedizioni spedizione)
+        {
+            if (spedizione != null)
+            {
+                _db.Spedizioni.Remove(spedizione);
+                _db.SaveChanges();
+                TempData["Message"] = "Spedizione eliminata con successo.";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Errore"] = "Errore nell'eliminazione della spedizione.";
+            return RedirectToAction("Index");
+        }
+
         public JsonResult NumIdentificativoUsed(int NumeroIdentificativo, string CurrentAction)
         {
             if (CurrentAction != null)

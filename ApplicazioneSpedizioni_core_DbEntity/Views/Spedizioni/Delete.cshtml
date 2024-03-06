@@ -1,15 +1,12 @@
 ﻿@model ApplicazioneSpedizioni_core_DbEntity.Models.Spedizioni
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
-<div class="d-flex gap-4 align-items-center">
-	<h1>Details</h1>
-   @*  <img src="~/imgs/scatola.png" /> *@
-</div>
+<h1>Delete</h1>
 
-
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Spedizioni</h4>
     <hr />
@@ -63,8 +60,10 @@
             @Html.DisplayFor(model => model.DataConsegnaPrevista)
         </dd>
     </dl>
-</div>
-<div>
-@*     <a asp-action="Edit" asp-route-id="@Model?.IdSpedizione">Edit</a> | *@
-    <a asp-action="Index">Back to List</a>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdSpedizione" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
 </div>

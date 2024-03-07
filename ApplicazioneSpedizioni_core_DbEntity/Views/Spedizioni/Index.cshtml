@@ -87,7 +87,7 @@
                     if (User.IsInRole("privato"))
                     {
                          <td>
-                            <a asp-action="Edit" asp-route-id="@item.IdSpedizione">Edit</a> |
+                            <a asp-action="EditByID" asp-route-id="@item.IdSpedizione" asp-route-idutente="@item.IdUtente">Edit</a> |
                             <a asp-action="Details" asp-route-id="@item.IdSpedizione">Dettagli</a> |
                             <a asp-action="Delete" asp-route-id="@item.IdSpedizione">Delete</a>
                         </td>

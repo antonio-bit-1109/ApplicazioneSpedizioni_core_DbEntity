@@ -17,6 +17,14 @@
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdSpedizione" />
+
+            <div class="form-group">
+                @*   <label asp-for="NumeroIdentificativo" class="control-label"></label> *@
+                <input asp-for="IdUtente" class="form-control" />
+                <span asp-validation-for="IdUtente" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
               @*   <label asp-for="NumeroIdentificativo" class="control-label"></label> *@
                 <input asp-for="NumeroIdentificativo" type="hidden" class="form-control" />

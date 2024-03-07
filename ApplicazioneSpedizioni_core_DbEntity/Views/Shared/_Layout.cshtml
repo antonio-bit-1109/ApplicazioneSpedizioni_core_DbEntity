@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -42,12 +44,26 @@
                         }
 
                         @{
+
+
                             if (User.IsInRole("privato"))
                             {
-                                <li class="nav-item ms-5 text-danger d-flex align-items-center">
+
+                                if (User.Identity.IsAuthenticated && User.FindFirst(ClaimTypes.Name)?.Value == "anto")
+                                {
+                                    <li class="nav-item ms-5 text-danger d-flex align-items-center">
+                                        <a> SUPERADMIN </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item ms-5 text-danger d-flex align-items-center">
 									<a> ADMIN </a>
                                 </li>
-                            } else if (User.IsInRole("azienda"))
+                                }
+                                
+                            } 
+                            else if (User.IsInRole("azienda"))
                             {
                                 <li class="nav-item ms-5 text-danger d-flex align-items-center">
                                     <a> UTENTE </a>

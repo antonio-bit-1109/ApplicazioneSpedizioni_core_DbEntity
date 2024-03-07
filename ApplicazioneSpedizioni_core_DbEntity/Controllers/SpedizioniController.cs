@@ -78,7 +78,7 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult EditByID(int id, int id_utente)
         {
             var spedizioneDaMOdificare = _db.Spedizioni.Find(id);
 

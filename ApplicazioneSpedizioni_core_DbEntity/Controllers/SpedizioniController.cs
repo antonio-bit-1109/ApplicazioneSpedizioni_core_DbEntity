@@ -2,6 +2,7 @@
 using ApplicazioneSpedizioni_core_DbEntity.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 {
@@ -18,15 +19,23 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 
         public IActionResult Index()
         {
-            var UserId = User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
 
-            int idUtenteClaim = Convert.ToInt32(UserId);
-            var spedizioniUtente = _db.Spedizioni.Where(t => t.IdUtente == idUtenteClaim).ToList();
+            // accesso da superAdmin puo vedere tutte le spedizioni
+            if (User.FindFirst(ClaimTypes.Name)?.Value == "anto")
+            {
+                var spedizioniUtente = _db.Spedizioni.ToList();
+                return View(spedizioniUtente);
+            }
+            else
+            {
+                var UserId = User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+                int idUtenteClaim = Convert.ToInt32(UserId);
+                var spedizioniUtente = _db.Spedizioni.Where(t => t.IdUtente == idUtenteClaim).ToList();
+                return View(spedizioniUtente);
+            }
 
 
             // var TutteLeSpedizioniDellUtente = _db.Spedizioni.Where().ToList();
-
-            return View(spedizioniUtente);
         }
 
         public IActionResult Create()
@@ -102,6 +111,7 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
 
         public IActionResult Details(int id)
         {
+            TempData["IdSpedizione"] = id;
             var spedizione = _db.Spedizioni.Find(id);
             return View(spedizione);
         }
@@ -166,6 +176,15 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
             return RedirectToAction("Details");
         }
 
+        public IActionResult VisualizzaAggiornamenti(int id)
+        {
+            var StatoSpedizione = _db.StatoSpedizioni.Where(t => t.IdSpedizione == id).ToList();
+            return View(StatoSpedizione);
+        }
+
+
+
+        // controllo per il remote (NUmeroIdentificativo Univoco) 
         public JsonResult NumIdentificativoUsed(int NumeroIdentificativo, string CurrentAction)
         {
             if (CurrentAction != null)

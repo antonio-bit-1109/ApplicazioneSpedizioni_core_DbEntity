@@ -73,8 +73,12 @@
        if( User.IsInRole("privato"))
        {
              <a asp-action="AggiornaSpedizione" asp-route-id="@Model.IdSpedizione" class="btn btn-info text-light me-auto" >Aggiorna Spedizione</a>
-             <a asp-action="VisualizzaAggiornamenti">Visualizza Aggiornamenti</a>
-       }
+            <a asp-action="VisualizzaAggiornamenti" asp-route-id="@Model.IdSpedizione">Visualizza Aggiornamenti</a>
+        }
+        else
+        {
+            <a asp-action="VisualizzaAggiornamenti" asp-route-id="@Model.IdSpedizione">Visualizza Aggiornamenti</a>
+        }
     }
    
 </div>

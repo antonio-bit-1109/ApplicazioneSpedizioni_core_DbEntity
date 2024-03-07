@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ApplicazioneSpedizioni_core_DbEntity.Models.StatoSpedizione>
+
+@{
+    ViewData["Title"] = "VisualizzaAggiornamenti";
+}
+
+<h1>VisualizzaAggiornamenti</h1>
+
+  <p>
+    <a asp-action="Details" asp-route-id="@TempData["IdSpedizione"]"> Indietro</a>
+</p> 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusSpedizione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuogoGiacenzaPacco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataAggiornamento)
+            </th>
+           @*  <th>
+                @Html.DisplayNameFor(model => model.Spedizioni)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusSpedizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuogoGiacenzaPacco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descrizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAggiornamento)
+            </td>
+           @*  <td>
+                @Html.DisplayFor(modelItem => item.Spedizioni.IndirizzoDestinatario)
+            </td> *@
+           @*  <td>
+                <a asp-action="Edit" asp-route-id="@item.IdStatoSpedizione">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdStatoSpedizione">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdStatoSpedizione">Delete</a>
+            </td> *@
+           
+        </tr>
+}
+    </tbody>
+</table>

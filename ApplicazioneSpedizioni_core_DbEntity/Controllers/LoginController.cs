@@ -48,7 +48,8 @@ namespace ApplicazioneSpedizioni_core_DbEntity.Controllers
                         {
                         new Claim(ClaimTypes.Name, login.nome),
                         new Claim(ClaimTypes.Role, user.TipoUtente) ,
-                        new Claim("Id" , user.IdUtente.ToString())
+                        new Claim("Id" , user.IdUtente.ToString()) ,
+                       
                         //new Claim(ClaimTypes.Thumbprint, user.Id.ToString())
                         };
 
